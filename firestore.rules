@@ -1,0 +1,82 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) ||
+        request.auth.token.email == "alnoorgroup.n@gmail.com"
+      );
+    }
+
+    // COLLECTION 1: /users/{userId} (ISOLATED PER-USER PROFILE & STATS)
+    match /users/{userId} {
+      allow get: if isSignedIn() && isValidId(userId) && (isOwner(userId) || isAdmin());
+      allow list: if isAdmin();
+      allow create: if isSignedIn() && isValidId(userId) && isOwner(userId);
+      allow update: if isSignedIn() && isValidId(userId) && (isOwner(userId) || isAdmin());
+      allow delete: if isSignedIn() && isValidId(userId) && (isOwner(userId) || isAdmin());
+
+      // SUBCOLLECTION: /users/{userId}/chats/{chatId}
+      match /chats/{chatId} {
+        allow get, list, create, update, delete: if isSignedIn() && isValidId(userId) && (isOwner(userId) || isAdmin());
+      }
+    }
+
+    // COLLECTION 2: /admins/{adminId} (TRUSTED ADMIN REGISTRY)
+    match /admins/{adminId} {
+      allow get: if isSignedIn() && isValidId(adminId) && (request.auth.uid == adminId || isAdmin());
+      allow list: if isAdmin();
+      allow create, update, delete: if isAdmin() && isValidId(adminId);
+    }
+
+    // COLLECTION 3: /feedback/{feedbackId} (PERMANENT USER & GUEST FEEDBACK)
+    match /feedback/{feedbackId} {
+      allow get: if isValidId(feedbackId) && (
+        isAdmin() || (isSignedIn() && existing().userId == request.auth.uid)
+      );
+
+      allow list: if isAdmin() || (isSignedIn() && existing().userId == request.auth.uid);
+
+      allow create: if isValidId(feedbackId) &&
+        incoming().id == feedbackId &&
+        incoming().category is string &&
+        incoming().title is string &&
+        incoming().message is string &&
+        incoming().status == 'Pending' &&
+        incoming().isResolved == false &&
+        (
+          (isSignedIn() && incoming().userId == request.auth.uid) ||
+          (!isSignedIn() && incoming().userId == 'guest')
+        );
+
+      allow update: if isAdmin() && isValidId(feedbackId);
+
+      allow delete: if isAdmin() && isValidId(feedbackId);
+    }
+  }
+}

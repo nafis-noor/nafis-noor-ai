@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 52" width="220" height="52" fill="none">
+  <defs>
+    <linearGradient id="goldLightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A6782E" />
+      <stop offset="50%" stop-color="#845D1C" />
+      <stop offset="100%" stop-color="#5E3E0C" />
+    </linearGradient>
+    <linearGradient id="emblemLightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B88E4F" />
+      <stop offset="60%" stop-color="#845D1C" />
+      <stop offset="100%" stop-color="#4F3309" />
+    </linearGradient>
+  </defs>
+
+  <!-- Emblem: Islamic Geometric 8-pointed star & Noor light core -->
+  <g transform="translate(192, 26)">
+    <!-- Rotating geometric squares forming 8-point star -->
+    <rect x="-14" y="-14" width="28" height="28" rx="3" fill="none" stroke="url(#emblemLightGrad)" stroke-width="1.8"/>
+    <rect x="-14" y="-14" width="28" height="28" rx="3" fill="none" stroke="url(#emblemLightGrad)" stroke-width="1.8" transform="rotate(45)"/>
+    <!-- Inner diamond -->
+    <rect x="-7.5" y="-7.5" width="15" height="15" rx="1.5" fill="url(#emblemLightGrad)" opacity="0.9" transform="rotate(22.5)"/>
+    <!-- Central luminous dot -->
+    <circle cx="0" cy="0" r="2.8" fill="#FFFBEB"/>
+  </g>
+
+  <!-- Arabic Typography -->
+  <g text-anchor="end">
+    <!-- Main Title -->
+    <text x="168" y="27" font-family="'Amiri', 'Traditional Arabic', 'Scheherazade New', serif" font-size="22" font-weight="700" fill="url(#goldLightGrad)" letter-spacing="0.5">
+      نَفِيسُ نُور
+    </text>
+    <!-- Subtitle -->
+    <text x="168" y="42" font-family="'Amiri', 'Traditional Arabic', sans-serif" font-size="9.5" font-weight="600" fill="#845D1C" letter-spacing="0.3">
+      المصحف والرفيق الذكي
+    </text>
+  </g>
+</svg>

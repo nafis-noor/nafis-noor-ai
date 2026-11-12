@@ -1,0 +1,284 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Authenticated Nafis Noor user profile, security role, and spiritual progress stats",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique Firebase Auth user ID matching the document ID",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "User email address (PII isolated to owner and admin)",
+          "maxLength": 254
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Sanitized user display name",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "Optional user profile avatar photo URL",
+          "maxLength": 1024
+        },
+        "authProvider": {
+          "type": "string",
+          "description": "Authentication provider identifier",
+          "enum": ["google.com", "password", "anonymous"],
+          "maxLength": 32
+        },
+        "isNewUser": {
+          "type": "boolean",
+          "description": "Flag indicating if this is a newly registered user or returning user"
+        },
+        "loginCount": {
+          "type": "number",
+          "description": "Monotonically increasing count of user sign-ins"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Immutable ISO timestamp when the user account was first created",
+          "maxLength": 64
+        },
+        "lastLoginAt": {
+          "type": "string",
+          "description": "ISO timestamp of most recent login",
+          "maxLength": 64
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO timestamp when data was last updated",
+          "maxLength": 64
+        },
+        "role": {
+          "type": "string",
+          "description": "RBAC security role; non-admins can only create as 'user' and cannot self-escalate",
+          "enum": ["user", "admin"],
+          "maxLength": 16
+        },
+        "stats": {
+          "type": "object",
+          "description": "Persistent Noor Islamic user stats, streaks, bookmarks, XP, and preferences"
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "displayName",
+        "authProvider",
+        "isNewUser",
+        "loginCount",
+        "createdAt",
+        "lastLoginAt",
+        "updatedAt",
+        "role",
+        "stats"
+      ]
+    },
+    "ChatSession": {
+      "title": "ChatSession",
+      "description": "Private Noor AI conversation thread belonging strictly to a single user",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Chat session ID",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "userId": {
+          "type": "string",
+          "description": "Owner user Auth UID matching parent /users/{userId}",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "title": {
+          "type": "string",
+          "description": "Sanitized title of conversation",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "messages": {
+          "type": "array",
+          "description": "Bounded list of conversation messages (max 200 messages)"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Immutable ISO timestamp of creation",
+          "maxLength": 64
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO timestamp of last update",
+          "maxLength": 64
+        }
+      },
+      "required": ["id", "userId", "title", "messages", "createdAt", "updatedAt"]
+    },
+    "AdminRecord": {
+      "title": "AdminRecord",
+      "description": "Trusted administrator lookup document for RBAC verification",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Admin Firebase Auth UID",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Verified administrator email",
+          "maxLength": 254
+        },
+        "grantedAt": {
+          "type": "string",
+          "description": "ISO timestamp when admin role was provisioned",
+          "maxLength": 64
+        }
+      },
+      "required": ["uid", "email", "grantedAt"]
+    },
+    "FeedbackSubmission": {
+      "title": "FeedbackSubmission",
+      "description": "User or guest feedback and suggestion submission stored permanently for founder review",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique feedback submission ID",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "category": {
+          "type": "string",
+          "description": "Feedback category",
+          "enum": [
+            "General Feedback",
+            "Feature Request",
+            "Bug Report",
+            "Quran Experience",
+            "Tasme3 Experience",
+            "Other"
+          ],
+          "maxLength": 64
+        },
+        "title": {
+          "type": "string",
+          "description": "Short feedback title",
+          "minLength": 2,
+          "maxLength": 200
+        },
+        "message": {
+          "type": "string",
+          "description": "Detailed feedback message",
+          "minLength": 5,
+          "maxLength": 5000
+        },
+        "email": {
+          "type": "string",
+          "description": "Optional submitter email address for receiving replies (PII protected)",
+          "maxLength": 254
+        },
+        "userId": {
+          "type": "string",
+          "description": "Authenticated user UID or 'guest'",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "userName": {
+          "type": "string",
+          "description": "Submitter display name or 'Guest'",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "language": {
+          "type": "string",
+          "description": "App language code at time of submission",
+          "minLength": 2,
+          "maxLength": 16
+        },
+        "status": {
+          "type": "string",
+          "description": "Review status managed by authorized administrators",
+          "enum": ["Pending", "Under Review", "Answered"],
+          "maxLength": 32
+        },
+        "isResolved": {
+          "type": "boolean",
+          "description": "Whether the feedback or issue has been marked resolved by an administrator"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Immutable ISO submission timestamp",
+          "maxLength": 64
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO timestamp when status or reply was last updated",
+          "maxLength": 64
+        },
+        "adminReply": {
+          "type": "string",
+          "description": "Optional founder/administrator response message",
+          "maxLength": 5000
+        },
+        "repliedAt": {
+          "type": "string",
+          "description": "Optional ISO timestamp when administrator replied",
+          "maxLength": 64
+        },
+        "repliedBy": {
+          "type": "string",
+          "description": "Optional administrator identifier who sent the reply",
+          "maxLength": 254
+        }
+      },
+      "required": [
+        "id",
+        "category",
+        "title",
+        "message",
+        "email",
+        "userId",
+        "userName",
+        "language",
+        "status",
+        "isResolved",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Isolated per-user profile and spiritual progress document. Accessible only by the owner (request.auth.uid == userId) or verified admin."
+    },
+    "/users/{userId}/chats/{chatId}": {
+      "schema": { "$ref": "#/entities/ChatSession" },
+      "description": "Private Noor AI conversation history subcollection. Accessible only by the parent user owner."
+    },
+    "/admins/{adminId}": {
+      "schema": { "$ref": "#/entities/AdminRecord" },
+      "description": "Read-only trusted administrator registry managed strictly by system administrators."
+    },
+    "/feedback/{feedbackId}": {
+      "schema": { "$ref": "#/entities/FeedbackSubmission" },
+      "description": "Permanent user and guest feedback submissions. Creation allowed for valid Pending submissions; reading, status updates, and replies restricted to verified administrators (or the authenticated submitter for their own records)."
+    }
+  }
+}

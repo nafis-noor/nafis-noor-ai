@@ -1,0 +1,12 @@
+{
+  "name": "NAFIS NOOR",
+  "description": "alnoor group",
+  "requestFramePermissions": [
+    "geolocation",
+    "microphone",
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

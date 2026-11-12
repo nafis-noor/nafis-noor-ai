@@ -1,0 +1,608 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-light: #F8F6F0;
+    --bg-dark: #080A0E;
+    --gold-primary: #C9A063;
+    --gold-bright: #DFBA7F;
+    --gold-deep: #A67C38;
+    --sat: env(safe-area-inset-top, 0px);
+    --sab: env(safe-area-inset-bottom, 0px);
+    --sal: env(safe-area-inset-left, 0px);
+    --sar: env(safe-area-inset-right, 0px);
+  }
+
+  html {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scroll-behavior: auto;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+    transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Instant touch response on interactive controls without blocking page gestures */
+  button, a, input, select, textarea, [role="button"] {
+    touch-action: manipulation;
+  }
+}
+
+.font-arabic {
+  font-family: 'Amiri', serif;
+  line-height: 1.85;
+}
+
+.font-serif-heading {
+  font-family: 'Cormorant Garamond', 'Cinzel', Georgia, serif;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', Georgia, serif;
+}
+
+.font-display {
+  font-family: 'Outfit', sans-serif;
+}
+
+/* ========================================================================= */
+/* LIQUID GLASS DESIGN SYSTEM (IOS SAFARI HARDWARE-OPTIMIZED)                 */
+/* ========================================================================= */
+
+/* Primary Panels - Core Main Panels (Optimized solid/translucent for iOS) */
+.liquid-glass-primary-dark {
+  background: rgba(13, 17, 24, 0.94);
+  border: 1px solid rgba(201, 160, 99, 0.22);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.liquid-glass-primary-light {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(190, 150, 85, 0.28);
+  box-shadow: 0 2px 8px rgba(45, 35, 20, 0.06);
+}
+
+/* Secondary Panels - Sub-cards & Nested sections */
+.liquid-glass-secondary-dark {
+  background: rgba(19, 25, 35, 0.92);
+  border: 1px solid rgba(201, 160, 99, 0.16);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.liquid-glass-secondary-light {
+  background: rgba(248, 246, 240, 0.96);
+  border: 1px solid rgba(190, 150, 85, 0.2);
+  box-shadow: 0 2px 8px rgba(45, 35, 20, 0.05);
+}
+
+/* Feature Hero Card - Prayer, Qur'an, Noor AI */
+.liquid-glass-hero-dark {
+  background: radial-gradient(130% 130% at 50% 0%, rgba(201, 160, 99, 0.15) 0%, rgba(13, 17, 24, 0.96) 55%, rgba(8, 10, 14, 0.98) 100%);
+  border: 1px solid rgba(223, 186, 127, 0.32);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.liquid-glass-hero-light {
+  background: radial-gradient(120% 120% at 50% 0%, rgba(255, 248, 235, 0.98) 0%, rgba(255, 255, 255, 0.96) 60%, rgba(248, 245, 238, 0.98) 100%);
+  border: 1px solid rgba(190, 150, 85, 0.35);
+  box-shadow: 0 2px 8px rgba(45, 35, 20, 0.06);
+}
+
+/* Radiant Glass Orb - Noor AI Avatar & Hero Emblems */
+.liquid-glass-orb {
+  background: radial-gradient(circle at 35% 30%, rgba(223, 186, 127, 0.55) 0%, rgba(201, 160, 99, 0.3) 45%, rgba(13, 17, 24, 0.95) 100%);
+  border: 1.5px solid rgba(223, 186, 127, 0.55);
+  box-shadow: 0 2px 8px rgba(201, 160, 99, 0.2);
+}
+
+.liquid-glass-orb-light {
+  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.98) 0%, rgba(223, 186, 127, 0.45) 50%, rgba(190, 150, 85, 0.3) 100%);
+  border: 1.5px solid rgba(190, 150, 85, 0.45);
+  box-shadow: 0 2px 8px rgba(190, 150, 85, 0.15);
+}
+
+/* Floating Navigation Bar - Blur preserved as requested */
+.liquid-glass-floating-nav-dark {
+  background: rgba(11, 15, 22, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(201, 160, 99, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.liquid-glass-floating-nav-light {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(190, 150, 85, 0.32);
+  box-shadow: 0 2px 8px rgba(45, 35, 20, 0.08);
+}
+
+/* Modal Dialog Overlay - Blur preserved as requested */
+.liquid-glass-modal-dark {
+  background: rgba(11, 14, 20, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(201, 160, 99, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.liquid-glass-modal-light {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(190, 150, 85, 0.35);
+  box-shadow: 0 2px 8px rgba(45, 35, 20, 0.1);
+}
+
+/* Glass Inputs - Fast rendering without filter */
+.liquid-glass-input-dark {
+  background: rgba(15, 20, 28, 0.92);
+  border: 1px solid rgba(201, 160, 99, 0.25);
+  color: #F5EFE6;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.liquid-glass-input-dark:focus {
+  border-color: #DFBA7F;
+  box-shadow: 0 0 0 1px rgba(223, 186, 127, 0.3);
+}
+
+.liquid-glass-input-light {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(190, 150, 85, 0.32);
+  color: #1F1E1B;
+  box-shadow: inset 0 1px 2px rgba(45, 35, 20, 0.05);
+}
+
+.liquid-glass-input-light:focus {
+  border-color: #A67C38;
+  box-shadow: 0 0 0 1px rgba(166, 124, 56, 0.25);
+}
+
+/* Gradients & Accents */
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #C9A063 0%, #DFBA7F 50%, #B88E4F 100%);
+}
+
+.bg-gold-gradient-subtle-dark {
+  background: linear-gradient(135deg, rgba(201, 160, 99, 0.16) 0%, rgba(223, 186, 127, 0.08) 100%);
+}
+
+.bg-gold-gradient-subtle-light {
+  background: linear-gradient(135deg, rgba(201, 160, 99, 0.12) 0%, rgba(223, 186, 127, 0.05) 100%);
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #DFBA7F 0%, #C9A063 60%, #EAD5AE 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gold-gradient-light {
+  background: linear-gradient(135deg, #8E6527 0%, #A67C38 60%, #6E4D1B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtle Islamic Star Lattice Geometry */
+.islamic-pattern {
+  background-image: radial-gradient(rgba(201, 160, 99, 0.1) 1.2px, transparent 1.2px),
+    radial-gradient(rgba(223, 186, 127, 0.06) 1.2px, transparent 1.2px);
+  background-size: 36px 36px;
+  background-position: 0 0, 18px 18px;
+}
+
+.islamic-pattern-light {
+  background-image: radial-gradient(rgba(190, 150, 85, 0.12) 1.2px, transparent 1.2px),
+    radial-gradient(rgba(166, 124, 56, 0.06) 1.2px, transparent 1.2px);
+  background-size: 36px 36px;
+  background-position: 0 0, 18px 18px;
+}
+
+/* Animation utilities - Simplified to single transition and 200ms duration for iOS */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.65;
+  }
+}
+
+.animate-pulseGlow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Animated Checkmark for Verification and Success States */
+@keyframes checkmarkScale {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes checkmarkCircle {
+  0% {
+    stroke-dashoffset: 166;
+    transform: rotate(-90deg) scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    transform: rotate(-90deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes checkmarkStroke {
+  0% {
+    stroke-dashoffset: 48;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-checkmark-wrapper {
+  animation: checkmarkScale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-checkmark-circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  animation: checkmarkCircle 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: center;
+}
+
+.animate-checkmark-check {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: checkmarkStroke 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+}
+
+/* Hide scrollbar while enabling smooth touch scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* RTL Layout Optimization */
+[dir="rtl"] {
+  text-align: start;
+}
+
+[dir="rtl"] .font-arabic {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="rtl"] input,
+[dir="rtl"] textarea {
+  text-align: start;
+}
+
+/* Streak Pulse and Glow Micro-interactions - Simplified to single property for iOS 60fps smoothness */
+@keyframes streakPulseGlow {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(223, 186, 127, 0.2);
+  }
+  50% {
+    box-shadow: 0 2px 8px rgba(223, 186, 127, 0.5);
+  }
+}
+
+@keyframes flameRadiant {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.animate-streak-glow {
+  animation: streakPulseGlow 1.6s ease-in-out infinite;
+}
+
+.animate-flame-radiant {
+  animation: flameRadiant 1.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 24s linear infinite;
+  will-change: transform;
+}
+
+/* Pure CSS Star Particles - Maximum 30 particles, zero JavaScript */
+@keyframes starTwinkle {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+}
+
+.star-particle {
+  position: absolute;
+  border-radius: 9999px;
+  background-color: #DFBA7F;
+  pointer-events: none;
+  animation: starTwinkle 3s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* ========================================================================= */
+/* FRAMER MOTION & CSS ANIMATION SYSTEM (CALM, PREMIUM, INTENTIONAL)        */
+/* ========================================================================= */
+
+/* 5. Quran Verse Highlighting: Right-to-Left Gold Sweep over 300ms */
+@keyframes verseHighlightRTL {
+  0% {
+    background-size: 0% 100%;
+    background-position: 100% 50%;
+  }
+  100% {
+    background-size: 100% 100%;
+    background-position: 100% 50%;
+  }
+}
+
+.verse-highlight-rtl {
+  background-image: linear-gradient(to left, rgba(201, 160, 99, 0.25), rgba(223, 186, 127, 0.35));
+  background-repeat: no-repeat;
+  background-position: 100% 50%;
+  animation: verseHighlightRTL 300ms cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+/* Previous Highlights Trail: 30% Opacity */
+.verse-highlight-trail {
+  opacity: 0.3 !important;
+  transition: opacity 400ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* Verse Shimmer Effect */
+@keyframes verseShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.verse-shimmer-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.verse-shimmer-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(223, 186, 127, 0.16), transparent);
+  transform: skewX(-20deg);
+  animation: verseShimmer 2.4s infinite cubic-bezier(0.32, 0.72, 0, 1);
+  pointer-events: none;
+}
+
+/* 6. Micro-interactions */
+.btn-press-bounce {
+  transition: transform 100ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+.btn-press-bounce:active {
+  transform: scale(0.97);
+}
+
+.card-hover-lift {
+  transition: transform 400ms cubic-bezier(0.32, 0.72, 0, 1), box-shadow 400ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+.card-hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px -6px rgba(201, 160, 99, 0.25), 0 8px 14px -4px rgba(0, 0, 0, 0.3);
+}
+
+/* Liquid Wave Fill for Progress Bars */
+@keyframes liquidWave {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.liquid-wave-bar {
+  background: linear-gradient(90deg, #8E6527 0%, #C9A063 25%, #DFBA7F 50%, #C9A063 75%, #8E6527 100%);
+  background-size: 200% 200%;
+  animation: liquidWave 3.2s ease infinite;
+}
+
+/* SVG Checkmark Stroke Draw */
+@keyframes checkmarkDraw {
+  0% {
+    stroke-dashoffset: 48;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-draw-check {
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: checkmarkDraw 400ms cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+/* 4. Pulsing Gold Aura for Unlocked Button */
+@keyframes goldAuraPulse {
+  0%, 100% {
+    box-shadow: 0 0 16px rgba(201, 160, 99, 0.35), 0 0 32px rgba(223, 186, 127, 0.2);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(223, 186, 127, 0.75), 0 0 55px rgba(201, 160, 99, 0.45);
+    transform: scale(1.018);
+  }
+}
+
+.animate-gold-aura {
+  animation: goldAuraPulse 1.8s ease-in-out infinite;
+}
+
+/* 8. Breathing Crescent Moon in Gold (scale 0.9 to 1.1, 2s loop) */
+@keyframes crescentBreathe {
+  0%, 100% {
+    transform: scale(0.9);
+    filter: drop-shadow(0 0 6px rgba(201, 160, 99, 0.4));
+  }
+  50% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 22px rgba(223, 186, 127, 0.8));
+  }
+}
+
+.animate-crescent-breathe {
+  animation: crescentBreathe 2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* Flowing Gradient & Skeleton Loaders */
+@keyframes flowingGradient {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-pulse {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.04) 25%, rgba(223, 186, 127, 0.12) 50%, rgba(255, 255, 255, 0.04) 75%);
+  background-size: 200% 100%;
+  animation: flowingGradient 1.8s ease-in-out infinite;
+}
+
+.skeleton-pulse-light {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.04) 25%, rgba(201, 160, 99, 0.14) 50%, rgba(0, 0, 0, 0.04) 75%);
+  background-size: 200% 100%;
+  animation: flowingGradient 1.8s ease-in-out infinite;
+}
+
+/* PEAK CELESTIAL PULSING ANIMATION (WORLD-CLASS BREATHING GOLDEN AURA) */
+@keyframes peakPulseCelestial {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(201, 160, 99, 0.35), 0 0 30px rgba(223, 186, 127, 0.2), inset 0 0 12px rgba(255, 235, 180, 0.25);
+    filter: drop-shadow(0 0 8px rgba(201, 160, 99, 0.4));
+  }
+  50% {
+    transform: scale(1.035);
+    box-shadow: 0 0 35px rgba(223, 186, 127, 0.8), 0 0 70px rgba(201, 160, 99, 0.5), inset 0 0 24px rgba(255, 245, 210, 0.6);
+    filter: drop-shadow(0 0 24px rgba(223, 186, 127, 0.85));
+  }
+}
+
+@keyframes peakRadiantRings {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.22);
+    opacity: 0.45;
+  }
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+}
+
+.animate-peak-pulse {
+  animation: peakPulseCelestial 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-peak-rings {
+  animation: peakRadiantRings 2.8s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+/* Respect prefers-reduced-motion media query */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

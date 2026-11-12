@@ -1,0 +1,73 @@
+{
+  "id": "/",
+  "name": "NOOR by ALNOORGROUP",
+  "short_name": "ALNOORGROUP",
+  "description": "Peaceful Islamic companion by ALNOORGROUP",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui", "window-controls-overlay"],
+  "orientation": "portrait-primary",
+  "theme_color": "#090B0E",
+  "background_color": "#090B0E",
+  "categories": ["lifestyle", "education", "books"],
+  "lang": "en",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Holy Qur'an",
+      "short_name": "Qur'an",
+      "description": "Read and listen to the Holy Qur'an with Tasmee3 recitation listening",
+      "url": "/?tab=quran",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Hisnul Muslim Dhikr",
+      "short_name": "Dhikr",
+      "description": "Authentic morning, evening, and daily fortress supplications",
+      "url": "/?tab=dhikr",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Quran Teacher AI",
+      "short_name": "Teacher AI",
+      "description": "Interactive real-time recitation coaching",
+      "url": "/?tab=quran",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Ask Noor AI",
+      "short_name": "Noor AI",
+      "description": "Verified Islamic companion and scholar",
+      "url": "/?tab=noor-ai",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

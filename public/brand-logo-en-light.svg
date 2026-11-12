@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 52" width="220" height="52" fill="none">
+  <defs>
+    <linearGradient id="goldLightGradEn" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A6782E" />
+      <stop offset="50%" stop-color="#845D1C" />
+      <stop offset="100%" stop-color="#5E3E0C" />
+    </linearGradient>
+    <linearGradient id="emblemLightGradEn" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B88E4F" />
+      <stop offset="60%" stop-color="#845D1C" />
+      <stop offset="100%" stop-color="#4F3309" />
+    </linearGradient>
+  </defs>
+
+  <!-- Emblem: Islamic Geometric 8-pointed star & Noor light core -->
+  <g transform="translate(28, 26)">
+    <rect x="-14" y="-14" width="28" height="28" rx="3" fill="none" stroke="url(#emblemLightGradEn)" stroke-width="1.8"/>
+    <rect x="-14" y="-14" width="28" height="28" rx="3" fill="none" stroke="url(#emblemLightGradEn)" stroke-width="1.8" transform="rotate(45)"/>
+    <rect x="-7.5" y="-7.5" width="15" height="15" rx="1.5" fill="url(#emblemLightGradEn)" opacity="0.9" transform="rotate(22.5)"/>
+    <circle cx="0" cy="0" r="2.8" fill="#FFFBEB"/>
+  </g>
+
+  <!-- English Typography -->
+  <g text-anchor="start">
+    <text x="52" y="26" font-family="'Cinzel', 'Trajan Pro', 'Cormorant Garamond', serif" font-size="16" font-weight="700" fill="url(#goldLightGradEn)" letter-spacing="2">
+      NAFIS NOOR
+    </text>
+    <text x="53" y="40" font-family="'Plus Jakarta Sans', 'Outfit', sans-serif" font-size="8" font-weight="600" fill="#845D1C" letter-spacing="1.5">
+      ISLAMIC AI COMPANION
+    </text>
+  </g>
+</svg>

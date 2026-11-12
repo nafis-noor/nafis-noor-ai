@@ -1,0 +1,14 @@
+node_modules/
+build/
+dist/
+dist-server/
+coverage/
+.DS_Store
+*.log
+*.map
+*.pem
+*.key
+DRAFT_firestore.rules
+.env*
+!.env.example
+
