@@ -152,15 +152,19 @@ export function blockExposedFilesMiddleware(
 // 3. STRICT CORS CONFIGURATION & WEBSOCKET ORIGIN VERIFICATION
 // ============================================================================
 export function isAllowedOrigin(origin: string | undefined): boolean {
-  // Same-origin requests (or non-browser / server-to-server) have no Origin header
-  if (!origin) return true;
+  // Same-origin requests, non-browser server-to-server, or Android WebViews have no Origin or 'null'
+  if (!origin || origin === 'null') return true;
 
   try {
     const parsed = new URL(origin);
     const hostname = parsed.hostname.toLowerCase();
 
-    // Official production domains
-    if (hostname === 'nafisnoor.site' || hostname === 'www.nafisnoor.site') {
+    // Official production domains and all subdomains
+    if (
+      hostname === 'nafisnoor.site' ||
+      hostname === 'www.nafisnoor.site' ||
+      hostname.endsWith('.nafisnoor.site')
+    ) {
       return true;
     }
 
@@ -169,12 +173,13 @@ export function isAllowedOrigin(origin: string | undefined): boolean {
       return true;
     }
 
-    // Local development & Capacitor native containers
+    // Local development & Capacitor/Android native containers
     if (
       hostname === 'localhost' ||
       hostname === '127.0.0.1' ||
       parsed.protocol === 'capacitor:' ||
-      parsed.protocol === 'ionic:'
+      parsed.protocol === 'ionic:' ||
+      parsed.protocol === 'file:'
     ) {
       return true;
     }
@@ -210,7 +215,8 @@ export const corsMiddleware = cors({
     if (isAllowedOrigin(origin)) {
       callback(null, true);
     } else {
-      callback(new Error('CORS policy blocked request from untrusted origin'));
+      // Gracefully disallow without unhandled exception
+      callback(null, false);
     }
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -276,6 +282,8 @@ export const securityHeadersMiddleware = helmet({
         'https://everyayah.com',
         'https://api.aladhan.com',
         'https://nafisnoor.site',
+        'https://*.nafisnoor.site',
+        'https://*.run.app',
       ],
       frameSrc: [
         "'self'",
